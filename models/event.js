@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 let eventOrgSchema = new Schema({
   date: {type: Date, required: true},
-  title: {type: String, required:true},
+  title: {type: String, required:true, unique: true},
   name_event: {type: String, required:true},
   email_eo: {type: String, required: true}
 })
@@ -15,3 +15,10 @@ eventOrgSchema.path('email_eo').validate((value)=> {
   let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return emailReg.test(value)
 }, `Please input the correct email format`)
+
+EventOrg.schema.path('title').validate((value)=> {
+  EventOrg.findOne({name: value}, (err, ev)=> {
+    if(ev) return false
+    return true
+  })
+}, 'Title already exist')
