@@ -1,0 +1,25 @@
+{
+  "name": "database-propagating-validations",
+  "version": "1.0.0",
+  "description": "Portfolio project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "NODE_ENV=test mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrasat/database-propagating-validations.git"
+  },
+  "author": "Andra Satria <andra.satria1@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrasat/database-propagating-validations/issues"
+  },
+  "homepage": "https://github.com/andrasat/database-propagating-validations#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.3"
+  }
+}
