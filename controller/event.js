@@ -9,8 +9,19 @@ module.exports = {
       name_event: req.body.name_event,
       email_eo: req.body.email_eo
     }).save((err, ev)=> {
-      if(err) res.send(err)
-      res.send('Data created')
+      if(err) {
+        if(err.errors.date) {
+          res.send(err.errors.date.message)
+        } else if (err.errors.title) {
+          res.send(err.errors.title.message)
+        } else if (err.errors.name_event) {
+          res.send(err.errors.name_event.message)
+        } else if (err.errors.email_eo) {
+          res.send(err.errors.email_eo.message)
+        }
+      } else {
+        res.send('Data created')
+      }
     })
   },
   findEO: (req, res)=> {
